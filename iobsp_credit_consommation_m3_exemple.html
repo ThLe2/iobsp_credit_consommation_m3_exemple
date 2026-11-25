@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Exemple commenté — module 3</title><style>
+:root{--prune:#8C1E70;--prune-fonce:#5E1349;--prune-clair:#F4E6EE;--accent:#C77BAA;
+ --vert:#283C28;--gris:#3C3C3C;--gris-moyen:#8A7A85;--filet:#E8DCE5;--creme:#FAF6F8;
+ --ok:#2F7A4F;--ko:#B23B3B;--amb:#B5852A;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--creme);color:var(--gris);
+ font-family:"Nunito","Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.62}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px 60px}
+header.bandeau{background:var(--prune-fonce);color:#fff;padding:18px 0;border-bottom:4px solid var(--accent)}
+header.bandeau .wrap{padding-bottom:0}
+.chapitre{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#EAD3E3}
+.chapitre span{color:var(--accent);margin:0 6px}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:27px;line-height:1.25;margin:8px 0 4px;color:#fff}
+.sous{color:#EAD3E3;font-size:14.5px;margin:0}
+h2{font-family:Georgia,"Times New Roman",serif;font-size:20px;color:var(--prune-fonce);
+ margin:34px 0 0;padding-bottom:8px;border-bottom:2px solid var(--filet)}
+h2 .num{color:var(--accent);margin-right:8px}
+h3{font-size:15px;color:var(--vert);margin:20px 0 8px;letter-spacing:.02em}
+.carte{background:#fff;border:1px solid var(--filet);border-radius:10px;padding:20px 22px;margin:18px 0;
+ box-shadow:0 1px 2px rgba(94,19,73,.05)}
+.enc{background:var(--prune-clair);border-left:5px solid var(--prune);padding:14px 18px;
+ border-radius:0 8px 8px 0;margin:18px 0;font-size:15.2px}
+.enc .t{display:block;font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;
+ font-weight:800;color:var(--prune-fonce);margin-bottom:6px}
+.enc.al{background:#FBF4F4;border-left-color:var(--ko)}.enc.al .t{color:var(--ko)}
+.enc.ci{background:#FCF8F0;border-left-color:var(--amb)}.enc.ci .t{color:#8A6418}
+.situ{background:#FCF9FB;border:1px dashed var(--filet);border-radius:8px;padding:16px 18px;margin:16px 0;font-size:15.2px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.duo>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:15px 17px;font-size:14.8px}
+.duo .h{font-weight:800;color:var(--prune-fonce);margin-bottom:7px;font-size:14.5px}
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.tri>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:14px 15px;font-size:14.3px}
+.quad{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.quad>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:12px 13px;font-size:13.6px}
+.quad .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13px;
+ text-transform:uppercase;letter-spacing:.04em}
+.tri .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13.5px;
+ text-transform:uppercase;letter-spacing:.05em}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.8px;background:#fff}
+th,td{border:1px solid var(--filet);padding:9px 12px;text-align:left}
+thead th{background:var(--prune-clair);color:var(--prune-fonce);font-size:13.5px}
+tbody th{font-weight:600;color:var(--gris)}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.tot td,tr.tot th{background:#FBF3F8;font-weight:800;color:var(--prune-fonce)}
+.dl{display:inline-flex;align-items:center;gap:9px;background:var(--prune);color:#fff;text-decoration:none;
+ padding:11px 20px;border-radius:8px;font-weight:700;font-size:15px;margin:20px 0 4px}
+.dl:hover{background:var(--prune-fonce)}
+ol.q{padding-left:0;list-style:none;counter-reset:q}
+ol.q>li{margin:16px 0;padding-left:38px;position:relative}
+ol.q>li::before{counter-increment:q;content:counter(q);position:absolute;left:0;top:1px;
+ width:26px;height:26px;border-radius:50%;background:var(--prune-clair);color:var(--prune-fonce);
+ font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+b,strong{color:var(--vert)}
+footer{text-align:center;font-size:12.5px;color:var(--gris-moyen);padding:26px 18px 12px;
+ border-top:1px solid var(--filet);margin-top:44px}
+@media(max-width:860px){.quad{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.duo,.tri,.quad{grid-template-columns:1fr}h1{font-size:22px}}
+@media print{body{background:#fff}.dl{display:none}header.bandeau{background:#5E1349 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+td{vertical-align:top}td:first-child{white-space:nowrap}.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}.tri>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:14px 15px;font-size:14.3px}.tri .h,.duo .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13.5px;text-transform:uppercase;letter-spacing:.05em}.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}.duo>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:15px 17px;font-size:14.8px}@media(max-width:640px){.tri,.duo{grid-template-columns:1fr}}.enc,tr,.tri,.duo{break-inside:avoid}
+.enc p,.cols p{margin:6px 0}.enc.ok{background:#F1F7F3;border-left-color:var(--ok)}.enc.ok .t{color:var(--ok)}
+.cols{display:grid;gap:14px;margin:16px 0}.cols.c2{grid-template-columns:1fr 1fr}.cols.c3{grid-template-columns:repeat(3,1fr)}.cols.c4{grid-template-columns:repeat(4,1fr)}.cols.c5,.cols.c6{grid-template-columns:repeat(3,1fr)}
+.cols>div>.enc{margin:0;height:100%}.cols table{margin:0}
+p.src{font-size:12.5px;color:var(--gris-moyen);line-height:1.5}
+td,th{vertical-align:top}
+@media(max-width:760px){.cols.c2,.cols.c3,.cols.c4,.cols.c5,.cols.c6{grid-template-columns:1fr}}
+table.frise{table-layout:fixed;font-size:13px}.enc h3{margin:2px 0 8px;font-family:Georgia,serif;color:var(--prune-fonce);font-size:16px}
+.cols>div>.enc{margin:0}
+</style></head><body>
+<header class="bandeau"><div class="wrap"><div class="chapitre">IOBSP NIVEAU 2 · BLOC 2 · JOURNÉE 3 — MODULE 3</div><h1>Exemple commenté — la même cliente, cinq états du droit</h1><p class="sous">Ce que chaque loi a concrètement changé pour une seule et même situation</p></div></header>
+<main class="wrap">
+<p>Le module 3 énumère des lois. Cet exemple en montre l&#x27;effet. Nous suivons une même cliente, dans une même situation, et nous regardons ce qui lui serait arrivé selon l&#x27;année où elle se présente. Rien n&#x27;est inventé dans les règles; seule la cliente est fictive.</p>
+<div class="enc"><span class="t">LA SITUATION, IDENTIQUE À CHAQUE ÉTAPE</span><p><b>M me Reynaud</b> entre dans un magasin d&#x27;électroménager pour acheter un lave-linge à <b>1 400 €</b>. À la caisse, on lui propose un financement. Elle accepte, signe, et repart avec une carte du magasin. Le crédit consenti est un <b>crédit renouvelable</b> adossé à cette carte. Elle est par ailleurs cliente d&#x27;une banque où elle détient un compte de dépôt et, plus tard, souscrira un prêt personnel assorti d&#x27;une assurance.</p></div>
+<table><tbody><tr><td></td><td><b>1 · Avant 1978 — l&#x27;état de nature</b></td></tr></tbody></table>
+<div class="enc"><span class="t">AVANT LA LOI SCRIVENER</span><div class="enc al"><span class="t">CE QUI SE PASSE</span><p>Aucune offre préalable, aucun délai de réflexion. M me Reynaud signe et est engagée immédiatement. Le formalisme du contrat n&#x27;est pas imposé: les conditions du crédit peuvent tenir en quelques lignes au dos du bon de commande.</p></div><p><i>C&#x27;est le point de départ. Tout ce qui suit corrige cet état.</i></p></div>
+<table><tbody><tr><td></td><td><b>2 · 1978, loi Scrivener — la protection à l&#x27;entrée</b></td></tr></tbody></table>
+<div class="enc"><span class="t">LOI N° 78-22 DU 10 JANVIER 1978</span><div class="enc ok"><span class="t">CE QUI CHANGE</span><p>Une offre préalable de crédit doit lui être remise, avec un formalisme imposé. Un délai lui est accordé pour revenir sur son engagement. Si elle avait financé un bien déterminé par un crédit affecté, le sort du crédit serait lié à celui de la vente.</p></div><p><i>La cliente cesse d&#x27;être engagée par un simple paraphe: le temps entre dans le contrat.</i></p></div>
+<table><tbody><tr><td></td><td><b>3 · 1989, loi Neiertz — le traitement de la sortie</b></td></tr></tbody></table>
+<div class="enc"><span class="t">LOI N° 89-1010 DU 31 DÉCEMBRE 1989</span><div class="enc al"><span class="t">LE PROBLÈME CONSTATÉ</span><p>Protéger à l&#x27;entrée ne suffit pas. Trois ans plus tard, M me Reynaud a cumulé quatre réserves de crédit et ne peut plus faire face. Aucune procédure n&#x27;existe pour traiter sa situation.</p></div><div class="enc ok"><span class="t">CE QUI CHANGE</span><p>Une procédure de traitement du surendettement est créée. Le <b>FICP</b> est institué: les incidents de remboursement sont désormais centralisés à la Banque de France.</p></div><p><i>Attention: Neiertz</i> <b>crée</b> <i>le FICP. Elle n&#x27;en impose pas encore la consultation avant d&#x27;accorder un crédit — ce sera Lagarde, vingt et un ans</i> <i>plus tard.</i></p></div>
+<table><tbody><tr><td></td><td><b>4 · 2001, loi MURCEF — la relation bancaire mise par écrit</b></td></tr></tbody></table>
+<div class="enc"><span class="t">LOI N° 2001-1168 DU 11 DÉCEMBRE 2001</span><div class="enc al"><span class="t">LE PROBLÈME CONSTATÉ</span><p>M me Reynaud n&#x27;a jamais signé de convention avec sa banque: la relation repose sur l&#x27;usage, et les tarifs évoluent sans qu&#x27;elle en soit informée. Par ailleurs, sa banque conditionne l&#x27;ouverture d&#x27;un livret à la souscription d&#x27;un autre produit.</p></div><div class="enc ok"><span class="t">CE QUI CHANGE</span><p>La <b>convention de compte de dépôt</b> devient obligatoire et écrite, tarifs compris. La <b>vente liée</b> est encadrée: on ne peut plus subordonner la vente d&#x27;un produit à celle d&#x27;un autre, sauf produits indissociables. La <b>médiation bancaire</b> est généralisée: un médiateur accessible et gratuit.</p></div><p><i>MURCEF ne touche pas au crédit renouvelable de la cliente: c&#x27;est une loi de la</i> <b>relation bancaire</b> <i>, pas une loi du crédit. C&#x27;est ce qui la rend</i> <i>confusante — et facile à distinguer une fois qu&#x27;on l&#x27;a compris.</i></p></div>
+<table><tbody><tr><td></td><td><b>5 · 2005, loi Châtel — la fin de la reconduction silencieuse</b></td></tr></tbody></table>
+<div class="enc"><span class="t">LOI N° 2005-67 DU 28 JANVIER 2005</span><div class="enc al"><span class="t">LE PROBLÈME CONSTATÉ</span><p>La carte de magasin de M me Reynaud se reconduit chaque année sans qu&#x27;elle en soit avertie. Elle a cessé de l&#x27;utiliser depuis deux ans, mais la réserve reste ouverte à son nom et pèse sur son endettement.</p></div><div class="enc ok"><span class="t">CE QUI CHANGE</span><p>Le professionnel doit l&#x27; <b>informer avant l&#x27;échéance</b> de sa faculté de ne pas reconduire. Appliqué au crédit renouvelable, cela donne l&#x27; <b>information annuelle</b> sur les conditions de reconduction, adressée en temps utile pour qu&#x27;elle puisse s&#x27;y opposer.</p></div><p><i>Toute question portant sur l&#x27;information annuelle ou sur la reconduction tacite renvoie à Châtel.</i></p></div>
+<table><tbody><tr><td></td><td><b>6 · 2010, loi Lagarde — la refonte</b></td></tr></tbody></table>
+<div class="enc"><span class="t">LOI N° 2010-737 DU 1ER JUILLET 2010</span><div class="enc al"><span class="t">LE PROBLÈME CONSTATÉ</span><p>Le crédit de M me Reynaud court depuis huit ans: ses échéances couvrent à peine les intérêts et le capital ne diminue pas. Personne n&#x27;a consulté le FICP avant de le lui accorder. La carte n&#x27;ouvre droit aux remises du magasin que si elle paie à crédit. Et son assurance de prêt lui a été imposée par sa banque.</p></div><div class="enc ok"><span class="t">CE QUI CHANGE — SIX APPORTS</span><p>• Délai de rétractation porté de <b>7 à 14 jours</b>.</p><p>• <b>Amortissement minimal</b> du renouvelable: 36 mois jusqu&#x27;à 3 000 €, 60 mois au-delà. Le crédit de 1 400 € doit être soldé en trois ans au plus.</p><p>• Au-delà de <b>1 000 €</b> sur le lieu de vente, une <b>alternative en crédit amortissable</b> doit lui être proposée: à 1 400 €, elle y a droit.</p><p>• <b>Cartes</b>: fonction paiement au comptant activée en priorité, avantages commerciaux non subordonnés à l&#x27;utilisation du crédit.</p><p>• <b>Consultation obligatoire du FICP</b> avant l&#x27;octroi, devoir d&#x27;explication et vérification de la solvabilité.</p><p>• <b>Publicité et FIPEN</b> normalisées; <b>taux d&#x27;usure</b> défini par montant et non par nature; <b>libre choix de l&#x27;assurance</b> emprunteur.</p></div><p><i>Sur l&#x27;assurance: MURCEF avait posé l&#x27;interdiction de la vente liée, Lagarde la rend effective. Une loi pose le principe, une autre lui donne ses</i> <i>moyens — c&#x27;est la mécanique des strates.</i></p></div>
+<table><tbody><tr><td></td><td><b>7 · 20 novembre 2026 — l&#x27;extension au crédit numérique</b></td></tr></tbody></table>
+<div class="enc"><span class="t">DIRECTIVE (UE) 2023/2225 · ORDONNANCE N° 2025-880 DU 3 SEPTEMBRE 2025</span><div class="enc al"><span class="t">LE PROBLÈME CONSTATÉ</span><p>La fille de M me Reynaud n&#x27;achète plus en magasin. Elle règle en quatre fois sans frais sur un site marchand, souscrit un mini- crédit de 150 € par application, et vit sur un découvert de 180 € accordé sans examen. Aucune de ces trois opérations ne relève du crédit à la consommation.</p></div><div class="enc ok"><span class="t">CE QUI CHANGE</span><p>Le plancher de 200 € disparaît et le plafond passe à 100 000 €. Le <b>paiement fractionné</b>, les <b>mini-crédits</b> et la <b>location avec</b> <b>option d&#x27;achat</b> entrent dans le champ. La <b>zone grise du découvert</b> — moins de 200 € ou moins d&#x27;un mois — se referme: information précontractuelle et évaluation de la solvabilité, proportionnée, deviennent dues.</p></div><p><i>Même logique que les strates précédentes: une pratique nouvelle échappait au droit, le droit la rattrape.</i></p></div>
+<table><tbody><tr><td></td><td><b>Ce que l&#x27;exemple démontre</b></td></tr></tbody></table>
+<table><thead><tr><th><b>Loi</b></th><th><b>Abus corrigé</b></th><th><b>Ce qu&#x27;elle change pour M me Reynaud</b></th></tr></thead><tbody><tr><td><b>Scrivener 1978</b></td><td>Engagement immédiat, sans formalisme</td><td>Offre préalable et délai pour revenir sur son engagement</td></tr><tr><td><b>Neiertz 1989</b></td><td>Aucune issue en cas de surendettement</td><td>Procédure de traitement · création du FICP</td></tr><tr><td><b>MURCEF 2001</b></td><td>Relation bancaire non écrite, produits imposés</td><td>Convention de compte écrite · vente liée encadrée · médiation</td></tr><tr><td><b>Châtel 2005</b></td><td>Reconduction silencieuse</td><td>Information annuelle avant l&#x27;échéance de sa carte</td></tr><tr><td><b>Lagarde 2010</b></td><td>Crédit renouvelable sans fin, entrée en crédit par défaut</td><td>Amortissement minimal · alternative amortissable · FICP consulté · assurance libre</td></tr><tr><td><b>CCD2 / 2026</b></td><td>Crédit numérique hors du droit</td><td>Paiement fractionné, mini-crédits, LOA et découverts dans le régime</td></tr></tbody></table>
+<div class="enc ci"><span class="t">LA MÉTHODE, EN UNE QUESTION</span><p>Devant une question sur l&#x27;origine d&#x27;une règle, ne cherchez pas à vous rappeler une liste: demandez-vous <b>quel abus la règle corrige</b>. Un compte sans contrat écrit, ou un produit imposé avec un autre → <b>MURCEF</b>.<br>Un contrat qui se renouvelle sans avertissement → <b>Châtel</b>.<br>Une règle technique du crédit conso — durée, rétractation, publicité, fichier, usure, assurance → <b>Lagarde</b>.<br>Un crédit numérique qui échappait à tout → <b>réforme de 2026</b>.</p></div>
+<div class="enc ok"><span class="t">LES DEUX PIÈGES DE CE MODULE</span><p>• <b>Le FICP.</b> Créé par <b>Neiertz</b> en 1989; sa consultation avant tout octroi n&#x27;est imposée que par <b>Lagarde</b> en 2010. Deux lois, deux rôles.</p><p>• <b>L&#x27;assurance emprunteur.</b> L&#x27;interdiction de principe de la vente liée vient de <b>MURCEF</b>; le libre choix effectif de l&#x27;assurance vient de <b>Lagarde</b>.</p></div>
+<p><i>Document fictif à usage pédagogique. La cliente et sa situation sont imaginaires; les règles citées ne le sont pas. Sources: lois n° 78-22 du 10 janvier 1978, n° 89-1010 du</i> <i>31 décembre 1989, n° 2001-1168 du 11 décembre 2001, n° 2005-67 du 28 janvier 2005, n° 2010-737 du 1er juillet 2010 · directive (UE) 2023/2225 du 18 octobre 2023 ·</i> <i>ordonnance n° 2025-880 du 3 septembre 2025 · arrêté du 18 juillet 2022, annexe A, point B.1.</i></p>
+</main>
+<footer>TMK Performances - N° Siret : 49841924100027 - Code NAF : 8559A</footer>
+</body></html>
